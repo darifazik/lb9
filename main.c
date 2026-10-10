@@ -1,30 +1,33 @@
-/*Файзуллина Дарина Ирековна
- ПИ 1-1
- lab 9*/
- #include <stdio.h>
+/* Файзуллина Дарина Ирековна
+   ПИ 1-1
+   lab 9 */
+#include <stdio.h>
+
 #define LIMIT 5
 
-int main(void) {
+int main(void)
+{
     int a[LIMIT][LIMIT], b[LIMIT][LIMIT];
     int rows, cols;
-    printf("Enter rows and cols (1..5): ");
+
+    printf("Enter rows and cols (1..%d): \n", LIMIT);
     if (scanf("%d%d", &rows, &cols) != 2) {
         printf("Input error\n");
         return 1;
     }
-    if (rows < 1 || rows > LIMIT ||
-        cols < 1 || cols > LIMIT) {
+    if (rows < 1 || rows > LIMIT || cols < 1 || cols > LIMIT) {
         printf("Size error\n");
         return 1;
     }
+
+    printf("Enter %d elements (-1000..1000), row by row:\n", rows * cols);
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < cols; col++) {
             if (scanf("%d", &a[row][col]) != 1) {
                 printf("Input error\n");
                 return 1;
             }
-            if (a[row][col] < -1000 ||
-                a[row][col] > 1000) {
+            if (a[row][col] < -1000 || a[row][col] > 1000) {
                 printf("Value error\n");
                 return 1;
             }
@@ -38,9 +41,9 @@ int main(void) {
         for (int col = 0; col < cols; col++) {
             printf("%6d", a[row][col]);
             rowSum += a[row][col];
-            total += a[row][col];
         }
         printf("\nRow %d sum = %lld\n", row, rowSum);
+        total += rowSum;
     }
     printf("Total = %lld\n", total);
 
@@ -49,6 +52,7 @@ int main(void) {
             b[col][row] = a[row][col];
         }
     }
+
     printf("Transposed:\n");
     for (int row = 0; row < cols; row++) {
         for (int col = 0; col < rows; col++) {
@@ -56,5 +60,6 @@ int main(void) {
         }
         printf("\n");
     }
+
     return 0;
 }
